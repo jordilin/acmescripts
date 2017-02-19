@@ -7,14 +7,24 @@ package main
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
 )
 
+var makeTarget string
+
 func main() {
-	cmd := exec.Command("make", "test")
+	flag.StringVar(&makeTarget, "t", "test", "make test target to execute")
+	flag.Parse()
+	if flag.NArg() == 0 {
+		flag.Usage()
+		os.Exit(2)
+	}
+	cmd := exec.Command("make", makeTarget)
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	cmd.Run()
