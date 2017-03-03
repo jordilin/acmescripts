@@ -14,7 +14,7 @@ var makeTarget string
 func main() {
 	flag.StringVar(&makeTarget, "t", "test", "make test target to execute")
 	flag.Parse()
-	if flag.NArg() == 0 {
+	if flag.NArg() != 0 {
 		flag.Usage()
 		os.Exit(2)
 	}
