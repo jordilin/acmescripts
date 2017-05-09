@@ -27,6 +27,7 @@ func main() {
 	cmd := exec.Command("make", makeTarget)
 	var out bytes.Buffer
 	cmd.Stdout = &out
+	cmd.Stderr = &out
 	cmd.Run()
 	fmt.Println(parseTestOutput(strings.TrimSpace(out.String())))
 }
