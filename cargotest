@@ -3,7 +3,10 @@
 set -o pipefail
 
 echo "Testing ...\n"
-cargo test -q | sed -n '/^failures/,/failures/{s/^failures //;/^failures/d;p;}'
+
+# 2 > /dev/null silence the warnings when running tests.
+
+cargo test -q 2>/dev/null | sed -n '/^failures/,/failures/{s/^failures //;/^failures/d;p;}'
 
 if [ $? -eq 0 ]
 then
