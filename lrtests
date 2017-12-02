@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# (l) command (l)ists Rust unit tests
+
+# Usage:
+# lrtests $% (current window)
+# lrtests *.rs (all rust files in current directory)
+
+# will print out
+# <module_name>:<line_number>: <test_name>
+
+awk '/\[test/{getline;var=FILENAME; n=split (var,a,/\//); print a[n]":"NR":"$0}' "$@"
