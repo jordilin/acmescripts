@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -o pipefail
+
+FILENAME="$1"
+xelatex -interaction nonstopmode -halt-on-error -file-line-error $FILENAME | sed -n '/^\.\/'"$FILENAME"'/,/Output/{/Output/!p;}'
+if [ $? -eq 0 ]
+then
+	echo "\nAll good ;-)\n"
+else
+	echo "\nOops. FAILED!!\n"
+fi
