@@ -1,0 +1,21 @@
+#!/bin/sh
+
+BACKEND=-pdf # Makes use of pdflatex under the covers
+FILENAME=$1
+
+if test "$1" == "xelatex";
+then
+    BACKEND="-xelatex"
+    FILENAME=$2
+fi
+
+set -o pipefail
+
+latexmk $BACKEND -interaction=nonstopmode -halt-on-error -file-line-error $FILENAME 2>/dev/null | sed -n '/^\.\/'"$FILENAME"'/,/Transcript/{/Transcript/!p;}'
+
+if [ $? -eq 0 ]
+then
+	echo "\nAll good ;-)\n"
+else
+	echo "\nOops. FAILED!!\n"
+fi
