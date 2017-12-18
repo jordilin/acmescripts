@@ -1,0 +1,27 @@
+#!/bin/sh
+
+SHELL=rc
+PLAN9=/Users/jcarrill/opensource/plan9port 
+PATH=$PLAN9/bin:$HOME/bin/acmescripts:$HOME/.cargo/bin:$PATH 
+
+EDITOR=E
+PAGER=nobs
+unset FCEDIT VISUAL
+
+export \
+    PLAN9 \
+    PATH \
+    SHELL\
+    EDITOR \
+    PAGER \
+
+plumbproc=$(ps ax | grep -v grep | grep plumber)
+if [[ -z "$plumbproc" ]]; then
+    9 plumber
+fi
+fontsrvproc=$(ps ax | grep -v grep | grep fontsrv)
+if [[ -z "$fontsrvproc" ]]; then
+    9 fontsrv -m /mnt/font &
+fi
+#9 acme -a -f /mnt/font/LucidaGrande/16a/font -m /mnt/acme&
+9 acme -a -f /mnt/font/Menlo-Regular/16a/font -m /mnt/acme&
