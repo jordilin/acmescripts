@@ -20,13 +20,13 @@ type is text
 data matches 'crate ([a-zA-Z0-9_?,%#~&/\-+=]+)'
 data set https://crates.io/crates/$1
 plumb to web
-plumb start web $data
+plumb start open $data
 
 # urls go to web browser
 type is text
 data matches '(https?|ftp|file|gopher|mailto|news|nntp|telnet|wais|prospero)://[a-zA-Z0-9_@\-]+([.:][a-zA-Z0-9_@\-]+)*/?[a-zA-Z0-9_?,%#~&/\-+=]+([:.][a-zA-Z0-9_?,%#~&/\-+=]+)*'
 plumb to web
-plumb start web $0
+plumb start open $0
 
 # doc and rtf files go to wdoc2txt
 type is text
