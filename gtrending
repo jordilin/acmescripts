@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 githubtrending $1 | 9p write acme/new/body
 last=$(9p ls acme | sort -g | tail -n 1)
