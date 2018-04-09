@@ -12,7 +12,7 @@ import (
 
 const BASEURL = "https://github.com/trending/"
 
-var projRE = regexp.MustCompile(`<a href="\/[a-zA-z0-9_-]*\/[a-zA-z0-9]*">`)
+var projRE = regexp.MustCompile(`<a href="\/[a-zA-z0-9_-]*\/[a-zA-z0-9_-]*">`)
 
 func main() {
 	flag.Parse()
