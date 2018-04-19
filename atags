@@ -1,0 +1,42 @@
+# Miscellaneous Sam and other commands
+
+* select all: {:0,$} or simply {:;}
+* keep <80 columns: {|fmt}
+* Comment out: {|a+ //} or {|a+ '#'} etc...
+* Uncomment: {|a- //} or {|a- '#'} etc... 
+
+Note: For # you need to suround it by simple quotes or it 
+will simply increment or decrement the indentation.
+
+* search: s (uses ripgrep under the covers)
+* trending projects in Github for language: gtrending langname ex. "gtrending Go"
+	* "gtrending Rust"
+	* "gtrending Go"
+
+* execute everything in Python: {Edit ,>python}
+* execute selection in Python: {> python}
+* list of books: {g '#' $% | awk -F'#' '{print $2}'| sed 's/^ //'}
+* count lines: {Edit , > wc -l}
+* clear window: {Edit ,d}
+* Remove trailing white spaces: {Edit ,s/ $//g} or 
+{Edit , |/bin/sed 's/ $//'}
+
+# development
+
+Automatic formatting of code
+
+go get github.com/jordilin/go/acme/acmego
+
+Execute acmego (automatically formats go, python and rust files).
+
+## Go
+
+acmego will automatically add necessary imports. You need to:
+	* "go get golang.org/x/tools/cmd/goimports"
+
+## Python
+
+Install yapf
+
+
+
