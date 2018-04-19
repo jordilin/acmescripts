@@ -9,4 +9,4 @@
 # will print out
 # <module_name>:<line_number>: <test_name>
 
-awk '/\[test/{getline;var=FILENAME; n=split (var,a,/\//); print a[n]":"NR":"$0}' "$@"
+/usr/bin/awk '/\[test/{getline;var=FILENAME; n=split (var,a,/\//); print a[n]":"FNR":"$0}' "$@"
