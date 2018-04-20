@@ -15,6 +15,27 @@ data set	file://$file
 plumb to web
 plumb start web $data
 
+# rustdoc
+type is text
+data matches 'rustdoc ([a-zA-Z0-9_?,%#~&/\-+=]+)'
+data set https://doc.rust-lang.org/std/index.html?search=$1
+plumb to web
+plumb start xdg-open $data
+
+# pydoc
+type is text
+data matches 'pydoc ([a-zA-Z0-9_?,%#~&/\-+=]+)'
+data set https://docs.python.org/2.7/search.html?q=$1&check_keywords=yes&area=default
+plumb to web
+plumb start xdg-open $data
+
+# godoc
+type is text
+data matches 'godoc ([a-zA-Z0-9_?,%#~&/\-+=]+)'
+data set https://golang.org/search?q=$1
+plumb to web
+plumb start xdg-open $data
+
 # crates page
 type is text
 data matches 'crate ([a-zA-Z0-9_?,%#~&/\-+=]+)'
