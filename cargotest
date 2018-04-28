@@ -1,16 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
 set -o pipefail
 
-echo "Testing ...\n"
+echo "Build, lint and test ..."
 
-# 2 > /dev/null silence the warnings when running tests.
-
-cargo test -q 2>/dev/null | sed -n '/^failures/,/failures/{s/^failures //;/^failures/d;p;}'
+cargo build --tests -q && cargo clippy 2>&1 | sed '/Compiling|Finished/ d' && cargo test -q | sed -n '/^failures/,/failures/{s/^failures //;/^failures/d;p;}'
 
 if [ $? -eq 0 ]
 then
-	echo "All good ;-)\n"
+	echo "All good ;-)"
 else
-	echo "Oops. FAILED!!\n"
+	echo "Oops. FAILED!!"
 fi
