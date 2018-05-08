@@ -2,7 +2,7 @@
 
 SHELL=rc
 PLAN9=$HOME/opensource/plan9port
-PATH=$PLAN9/bin:$HOME/bin/acmescripts:$HOME/.cargo/bin:$PATH
+PATH=$PLAN9/bin:$HOME/bin/acmescripts:$HOME/bin:$HOME/.cargo/bin:$PATH
 
 EDITOR=E
 PAGER=nobs
