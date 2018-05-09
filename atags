@@ -4,6 +4,7 @@
 * keep <80 columns: {|fmt}
 * Comment out: {|a+ //} or {|a+ '#'} etc...
 * Uncomment: {|a- //} or {|a- '#'} etc... 
+* Search and replace: {Edit .+#0/old/c/new/}
 
 Note: For # you need to suround it by simple quotes or it 
 will simply increment or decrement the indentation.
