@@ -14,7 +14,6 @@
 {g '#' $% | awk -F'#' '{print $2}'| sed 's/^ //'}
 {Edit , > wc -l}
 acmego
-
-
-
-
+{Watch cargotest}
+{Watch gotest}
+{Watch nosetest}
