@@ -3,12 +3,20 @@
 {Edit +/keyword/} {Edit -/keyword/}
 {|a+ //} {|a+ '#'}
 {|a- //} {|a- '#'} 
+{Edit =}
 {Edit ,d}
 {Edit ,s/ $//g} {Edit , |/bin/sed 's/ $//'}
 {Edit .+#0/old/c/new/}
+
 {s keyword}
+{rustdoc keyword}
+{godoc keyword}
+{pydoc keyword}
+{crate name}
+
 {gtrending Rust}
 {gtrending Go}
+
 {Edit ,>python}
 {> python}
 {g '#' $% | awk -F'#' '{print $2}'| sed 's/^ //'}

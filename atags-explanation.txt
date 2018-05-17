@@ -3,10 +3,11 @@
 * select all: {:0,$} or simply {:;}
 * keep <80 columns: {|fmt}
 * Comment out: {|a+ //} or {|a+ '#'} etc...
-* Uncomment: {|a- //} or {|a- '#'} etc... 
+* Uncomment: {|a- //} or {|a- '#'} etc...
+* Current cursor's line number: {Edit =}
 * Search and replace: {Edit .+#0/old/c/new/}
 
-Note: For # you need to suround it by simple quotes or it 
+Note: For # you need to suround it by simple quotes or it
 will simply increment or decrement the indentation.
 
 * search: s (uses ripgrep under the covers)
@@ -14,12 +15,19 @@ will simply increment or decrement the indentation.
 	* "gtrending Rust"
 	* "gtrending Go"
 
+Plumbing search rules:
+
+* {rustdoc keyword}
+* {godoc keyword}
+* {pydoc keyword}
+* {crate name}
+
 * execute everything in Python: {Edit ,>python}
 * execute selection in Python: {> python}
 * list of books: {g '#' $% | awk -F'#' '{print $2}'| sed 's/^ //'}
 * count lines: {Edit , > wc -l}
 * clear window: {Edit ,d}
-* Remove trailing white spaces: {Edit ,s/ $//g} or 
+* Remove trailing white spaces: {Edit ,s/ $//g} or
 {Edit , |/bin/sed 's/ $//'}
 
 # development
