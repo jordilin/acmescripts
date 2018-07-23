@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# def <method>
+
+# Where is current function, method, class, etc... defined using ctags
+# Adopted from https://github.com/realwhz/acme-misc
+# Install universal-ctags and run it as follows
+# Ex:
+# Watch -x=tags ctags -R -n --languages=Rust src <other-crate-subfolders>
+
+old="$PWD"
+
+while [[ ! -f tags && "$PWD" != "/" ]]; do
+    cd ..
+done
+
+if [[ -f tags ]]; then
+    new="$PWD"
+    readtags -t tags $1 | awk -F "\t" -v prefix="${new#$old}" '{$2 = prefix"/"$2; print $2":"$3}'
+fi
