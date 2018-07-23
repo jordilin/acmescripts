@@ -1,9 +1,9 @@
 {:0,$} {:;}
+{Edit =}
 {|fmt}
 {Edit +/keyword/} {Edit -/keyword/}
 {|a+ //} {|a+ '#'}
 {|a- //} {|a- '#'} 
-{Edit =}
 {Edit ,d}
 {Edit ,s/ $//g} {Edit , |/bin/sed 's/ $//'}
 {Edit .+#0/old/c/new/}
@@ -22,6 +22,7 @@
 {g '#' $% | awk -F'#' '{print $2}'| sed 's/^ //'}
 {Edit , > wc -l}
 acmego
-{Watch cargotest}
-{Watch gotest}
-{Watch nosetest}
+{Watch -x=tags cargotest}
+{Watch -x=tags gotest}
+{Watch -x=tags nosetest}
+{Watch -x=tags ctags -R -n --languages=Rust src <other-crate-subfolders>}
