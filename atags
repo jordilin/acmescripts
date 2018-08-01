@@ -8,6 +8,7 @@
 {Edit ,s/ $//g} {Edit , |/bin/sed 's/ $//'}
 {Edit .+#0/old/c/new/}
 
+{def keyword}
 {s keyword}
 {rustdoc keyword}
 {godoc keyword}
