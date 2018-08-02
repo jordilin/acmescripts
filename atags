@@ -23,7 +23,7 @@
 {g '#' $% | awk -F'#' '{print $2}'| sed 's/^ //'}
 {Edit , > wc -l}
 acmego
-{Watch -x=tags cargotest}
-{Watch -x=tags gotest}
-{Watch -x=tags nosetest}
-{Watch -x=tags ctags -R -n --languages=Rust src <other-crate-subfolders>}
+{Watch -x tags cargotest}
+{Watch -x tags gotest}
+{Watch -x tags nosetest}
+{Watch -x tags ctags -R src <other-crate-subfolders>}
