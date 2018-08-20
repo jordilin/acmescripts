@@ -8,8 +8,8 @@
 {Edit ,s/ $//g} {Edit , |/bin/sed 's/ $//'}
 {Edit .+#0/old/c/new/}
 # comment docs
-Edit s/\/\/\///g
-Edit s/    /\/\/\//g
+{Edit s/\/\/\///g}
+{Edit s/    /\/\/\//g}
 
 {def keyword}
 {s keyword}
