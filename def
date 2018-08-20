@@ -16,5 +16,5 @@ done
 
 if [[ -f tags ]]; then
     new="$PWD"
-    readtags -t tags $1 | awk -F "\t" -v prefix="${new#$old}" '{$2 = prefix"/"$2; print "{"$2":"$3"}"}' | /bin/sed -e 's/(/\\(/g' | /bin/sed -e 's/)/\\)/g' | /bin/sed -e 's/\[/\\[/g' | /bin/sed -e 's/\]/\\]/g'
+    readtags -t tags $1 | awk -F "\t" -v prefix="${new#$old}" '{$2 = prefix"/"$2; print "\""$2":"$3"\""}' | /bin/sed -e 's/(/\\(/g' | /bin/sed -e 's/)/\\)/g' | /bin/sed -e 's/\[/\\[/g' | /bin/sed -e 's/\]/\\]/g'
 fi
