@@ -30,3 +30,4 @@ acmego
 {Watch -x tags gotest}
 {Watch -x tags nosetest}
 {Watch -x tags ctags -R src <other-crate-subfolders>}
+{GOPATH=/your/path Watch go build package_name}
