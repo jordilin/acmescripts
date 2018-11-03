@@ -1,4 +1,11 @@
-#!/bin/sh
+#!/bin/bash
+
+# In Debian /bin/sh points at /bin/dash where pipefail is not supported.
+
+# To be run in the same directory as filename.tex. Providing the full
+# path to filename.tex is not supported
+
+# Usage: latexbuild filename.tex
 
 BACKEND=-pdf # Makes use of pdflatex under the covers
 FILENAME=$1
@@ -11,11 +18,12 @@ fi
 
 set -o pipefail
 
+
 latexmk $BACKEND -interaction=nonstopmode -halt-on-error -file-line-error $FILENAME 2>/dev/null | sed -n '/^\.\/'"$FILENAME"'/,/Transcript/{/Transcript/!p;}'
 
 if [ $? -eq 0 ]
 then
-	echo "\nAll good ;-)\n"
+	echo "All good ;-)"
 else
-	echo "\nOops. FAILED!!\n"
+	echo "Oops. FAILED!!"
 fi
