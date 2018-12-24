@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# In window tag execute `lintpy $%` or `Watch lintpy $%` to have automatic linting
+# report with addressing
+
+input=$1
+
+# W:  4, 0: Unused import sys (unused-import)
+
+output=$(pylint $input 2>&1 | /bin/grep -v "No config" | grep W | /bin/sed -E 's;(.*):  ([0-9]+), ([0-9]+):(.*);\1:\4 ('"$input"':\2);')
+
+if test "$output" != ""
+then
+	echo $output
+else
+	echo "Lint ok; :-)"
+fi
