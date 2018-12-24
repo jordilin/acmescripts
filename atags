@@ -10,6 +10,7 @@
 # comment docs
 {Edit s/\/\/\///g}
 {Edit s/    /\/\/\//g}
+{Edit ,| expand -t 4}
 
 {def keyword}
 {s keyword}
