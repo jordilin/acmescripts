@@ -19,7 +19,7 @@ fi
 set -o pipefail
 
 
-latexmk $BACKEND -interaction=nonstopmode -halt-on-error -file-line-error $FILENAME 2>/dev/null | sed -n '/^\.\/'"$FILENAME"'/,/Transcript/{/Transcript/!p;}'
+latexmk $BACKEND -interaction=nonstopmode -bibtex-cond -halt-on-error -file-line-error $FILENAME 2>/dev/null | sed -n '/^\.\/'"$FILENAME"'/,/Transcript/{/Transcript/!p;}'
 
 if [ $? -eq 0 ]
 then
