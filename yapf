@@ -1,3 +1,11 @@
 #!/bin/bash
 
-PYTHONPATH=$HOME/opensource/yapf python $HOME/opensource/yapf/yapf "$@"
+# When adding a line below a function or class where we introduce a new
+# tab, use expand to transform it into four spaces, so yapf does not
+# complain with indentation error.
+# This is being used by acmego.
+
+tmpfile="$1".tmp
+expand -t 4 "$1" > "$tmpfile"
+PYTHONPATH=$HOME/opensource/yapf python $HOME/opensource/yapf/yapf "$tmpfile"
+rm -f "$tmpfile"
