@@ -4,11 +4,11 @@ set -o pipefail
 
 echo "Build, lint and test ..."
 
-cargo build --tests -q && cargo clippy 2>&1 | sed '/Compiling|Finished/ d' && cargo test -q | sed -n '/^failures/,/failures/{s/^failures //;/^failures/d;p;}'
+cargo build --tests -q 2>&1 | /bin/sed '/Compiling|Finished/ d' && cargo test -q | /bin/sed -n '/^failures/,/failures/{s/^failures //;/^failures/d;p;}' | head -n -1
 
 if [ $? -eq 0 ]
 then
 	echo "All good ;-)"
 else
-	echo "Oops. FAILED!!"
+	echo "Oops. FAILED!! :-("
 fi
