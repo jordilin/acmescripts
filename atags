@@ -12,6 +12,8 @@
 {Edit s/    /\/\/\//g}
 {Edit ,| expand -t 4}
 
+{|json_reformat}
+
 {def keyword}
 {s keyword}
 {rustdoc keyword}
