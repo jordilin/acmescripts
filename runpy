@@ -1,0 +1,9 @@
+#!/usr/bin/env rc
+
+# run the specified Python script and print out the traceback
+# with file:addr where the exception occurred if any.
+
+# Usage:
+# runpy $%
+
+python $* >[2=1] | /bin/sed -E 's/  File "(.*)", line ([0-9]+), /\1:\2 /'
