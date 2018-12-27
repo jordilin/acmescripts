@@ -1,0 +1,13 @@
+#!/usr/bin/env rc
+
+# Reformat source code comments maintaining/adding the right comment-out character.
+# Usage:
+# fmtc '<comment-out character>' '<indented-spaces-tabs>'
+
+# To reformat a comment placed in a 8 white spaces indented Python method
+# Ex: fmtc '#' '        '
+
+# Not using 9 fmt as it introduces a tab after fmt in indented white spaced
+# comments making it difficult to sed the right spaces if white spaces are used.
+
+9 sed 's;'$1' ;;g' | /usr/bin/fmt -w 79 | 9 sed 's;^'$2';;' | 9 sed 's;^ ;;' | 9 awk '{print "'$2''$1' " $0}'
