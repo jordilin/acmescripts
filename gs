@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Middle click ga on a repository and it will tell you if there's any file
+# Middle click gs on a repository and it will tell you if there's any file
 # that has been modified or is untracked. It will prepend the "git add"
 # command before the filename, so adding it is just a one click operation.
 
