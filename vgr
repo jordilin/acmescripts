@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# opens URL upon right click :vgr on a git repository. Controlled by plumber.
+
+url=$(grep url "$1"/.git/config | /bin/sed 's/^\t//' | /bin/sed 's/^ //' | /bin/sed 's/url = //' | /bin/sed 's;git@;https://;g' | /bin/sed 's/\.git$//' | /bin/sed -E 's;^https://([a-z0-9.]*):([a-z0-9/]+);https://\1/\2;g')
+
+xdg-open "$url"

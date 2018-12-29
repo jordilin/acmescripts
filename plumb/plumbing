@@ -18,6 +18,12 @@ data set	file://$file
 plumb to web
 plumb start web $data
 
+# visit git remote
+type is text
+data matches ':vgr'
+arg isdir .
+plumb start bash -c 'vgr '$dir''
+
 # git show - right click on a commit SHA1 to see its changes
 type is text
 data matches 'commit ([0-9a-f]*$)'
