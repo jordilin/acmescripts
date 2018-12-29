@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# git log up to n commits
+
+git log -n "$1"
