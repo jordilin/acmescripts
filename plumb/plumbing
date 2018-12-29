@@ -18,6 +18,13 @@ data set	file://$file
 plumb to web
 plumb start web $data
 
+# git show - right click on a commit SHA1 to see its changes
+type is text
+data matches 'commit ([0-9a-f]*$)'
+type is text
+arg isdir .
+plumb start bash -c 'git -C '$dir' show "'$1'" | plumb -i -d edit -a ''action=showdata filename='$1' '''
+
 # rustdoc
 type is text
 data matches 'rustdoc ([a-zA-Z0-9_?,%#~&/\-+=]+)'
