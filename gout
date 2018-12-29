@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Print out outgoing changes to be pushed
+
+git fetch
+out=$(git log origin/master..)
+
+if test "$out";
+then 
+	echo "$out"
+else
+	echo "Nothing to be pushed."
+fi
