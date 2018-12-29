@@ -6,7 +6,7 @@ git fetch
 out=$(git log origin/master..)
 
 if test "$out";
-then 
+then
 	echo "$out"
 else
 	echo "Nothing to be pushed."
