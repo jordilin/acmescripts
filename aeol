@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Remove trailing white spaces and add newline at end of file.  Executed by
+# acmego. It can also be executed by
+# (Edit , |/bin/sed 's/ $//g;$a \')
+
+/bin/sed '
+	s/ *$//g
+	$a \' "$1"
