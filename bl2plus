@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Prints the first line number after more than 2 blank lines or nothing.
+# This is more for warning and to be applied in all formatters (acmego).
+
+sed -n '
+	/^$/n
+	//!b
+	:a
+	N
+	/^\n$/ {
+		=
+		p
+	}
+	ta' "$1" | /bin/sed -n -E 's;([0-9]+);'"$1":'\1;p'
+
+
+# catch more than two blank lines at end of file
+
+lasttwo=$(tac "$1" | head -n 1 | egrep '^ *$' | wc -l)
+
+if test "$lasttwo" -eq 1;
+then
+	echo
+	echo "More than two blank lines detected at end of file:"
+	numlines=$(cat "$1" | wc -l | sed 's/ *//g')
+	let "numlines+=1"
+	echo "$1:$numlines"
+fi
