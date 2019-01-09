@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# search for callers
+
+s "\.?$1\("
