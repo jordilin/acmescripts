@@ -4,6 +4,24 @@
 # acmego. It can also be executed by
 # (Edit , |/bin/sed 's/ $//g;$a \')
 
+input="$1"
+whitespaces=$(egrep '^ .*' "$input" | wc -l)
+expanded=
+
+# If there is any whitespace at the beginning of lines, assume everything
+# is whitespaced.
+if test "$whitespaces" -gt 0
+then
+	input="$1.tmp"
+	expand -t 4 "$1" > "$input"
+	expanded=true
+fi
+
 /bin/sed '
 	s/ *$//g
-	$a \' "$1"
+	$a \' "$input"
+
+if test -n "$expanded"
+then
+	rm -f "$input"
+fi
