@@ -5,7 +5,15 @@
 # complain with indentation error.
 # This is being used by acmego.
 
-tmpfile="$1".tmp
+input="$1"
+tmpfile="$input".tmp
 expand -t 4 "$1" > "$tmpfile"
-PYTHONPATH=$HOME/opensource/yapf python $HOME/opensource/yapf/yapf "$tmpfile"
+errlog=yapferr.log
+PYTHONPATH=$HOME/opensource/yapf python $HOME/opensource/yapf/yapf "$tmpfile" 2> >(tee "$errlog" >&2)
+if test "$?" -ne 0;
+then
+    tail -n 4 "$errlog" | head -n 1 | awk -v input="$input" '{ print input ":" $4 }'
+    rm -f "$errlog"
+    exit 1
+fi
 rm -f "$tmpfile"
