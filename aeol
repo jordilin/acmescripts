@@ -5,7 +5,7 @@
 # (Edit , |/bin/sed 's/ $//g;$a \')
 
 input="$1"
-whitespaces=$(egrep '^ .*' "$input" | wc -l)
+whitespaces=$(egrep '^ +[a-zA-Z0-9]+' "$input" | wc -l)
 expanded=
 
 # If there is any whitespace at the beginning of lines, assume everything
