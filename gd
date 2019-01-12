@@ -14,4 +14,3 @@ echo -n "clean" | 9p write acme/$last/ctl
 echo -n "0,0" | 9p write acme/$last/addr
 echo -n "dot=addr" | 9p write acme/$last/ctl
 echo -n "show" | 9p write acme/$last/ctl
-
