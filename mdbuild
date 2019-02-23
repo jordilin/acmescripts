@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Usage
+# mdbuild $%
+
+# It will open the formatted Markdown in the browser
+
+pandoc "$1" > out.html && xdg-open out.html
