@@ -85,6 +85,10 @@ func parseTestOutput(output, baseDir string) string {
 						val.replaced = true
 					}
 				}
+			} else if fields[0] == FAIL && len(fields) == 4 {
+				allgood = false
+				// FAIL	module/package [build failed]
+				continue
 			}
 		}
 	}
