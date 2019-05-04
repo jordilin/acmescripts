@@ -3,17 +3,23 @@
 # Prints the first line number after more than 2 blank lines or nothing.
 # This is more for warning and to be applied in all formatters (acmego).
 
-sed -n '
-	/^$/n
-	//!b
-	:a
-	N
-	/^\n$/ {
-		=
-		p
-	}
-	ta' "$1" | /bin/sed -n -E 's;([0-9]+);'"$1":'\1;p'
+# For elm files bypass as the formatter keeps more than 2 blank lines in
+# between comments
 
+fileextension=$(basename "$1" | awk -F'.' '{print $NF}')
+
+if test "$fileextension" != "elm"; then
+	sed -n '
+		/^$/n
+		//!b
+		:a
+		N
+		/^\n$/ {
+			=
+			p
+		}
+		ta' "$1" | /bin/sed -n -E 's;([0-9]+);'"$1":'\1;p'
+fi
 
 # catch more than two blank lines at end of file
 
