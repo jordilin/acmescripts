@@ -1,0 +1,6 @@
+#!/bin/bash
+
+gexpand -t 4 "$1" > "$1.tmp"
+cat "$1.tmp" | elm-format --stdin --elm-version 0.19 --yes
+rm -f "$1.tmp"
+
