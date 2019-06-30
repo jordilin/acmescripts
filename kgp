@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+
+# Provides kubectl get pods by quoting the pods, so we can quickly select
+# them through acme.
+
+# kubectl get pods
+import subprocess
+output = subprocess.check_output(["kubectl", "get", "pods"])
+
+lines = output.split('\n')
+
+# Move headers two spaces to the right to account for quoting
+
+hf = lines[0].split(' ')
+i = 0
+begin = False
+for h in hf:
+    if h == '' and not begin:
+        # first space
+        begin = True
+        print '  ',
+    elif begin and h != '':
+        print h,
+    elif i == 0:
+        print h,
+    else:
+        print ' ',
+print
+for l in lines[1:]:
+    fields = l.split(' ')
+    if len(fields) < 4:
+        break
+    print '"' + fields[0] + '"',
+    i = 0
+    for f in fields[1:]:
+        if f == '' and i == 2:
+            print ' ',
+        else:
+            print f,
+            i = 0
+        i += 1
+    print
