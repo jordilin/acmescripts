@@ -1,0 +1,6 @@
+#!/usr/bin/env rc
+
+# Apply current yaml resource window to k8s. Just type `ka` on the tag and
+# middle-click on it.
+
+kubectl apply -f $%
