@@ -21,39 +21,6 @@ output = subprocess.check_output(cmd)
 
 lines = output.split('\n')
 
-# Move headers two spaces to the right to account for quoting
-
-hf = lines[0].split(' ')
-i = 0
-begin = False
-for h in hf:
-    if h == '' and not begin:
-        # first space
-        begin = True
-        print '       ' + len(namespace) * ' ',
-    elif begin and h != '':
-        print h,
-    elif i == 0:
-        print h,
-    else:
-        print ' ',
-print
-for l in lines[1:]:
-    fields = l.split(' ')
-    if len(fields) < 4:
-        break
-    if namespace == "":
-        print '(kdp ' + fields[0] + ')',
-    else:
-        # Add namespace next to it, so we can double click and kdp (describe
-        # it) quickly
-        print '(kdp ' + fields[0] + ' ' + namespace + ')',
-    i = 0
-    for f in fields[1:]:
-        if f == '' and i == 2:
-            print ' ',
-        else:
-            print f,
-            i = 0
-        i += 1
-    print
+import kcommon
+kcommon.span(lines, namespace)
+kcommon.format(lines, namespace)
