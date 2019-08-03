@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+# Provides kubectl get services by quoting the services, so we can quickly
+# select them through acme.
+
+import sys
+import kcommon
+import subprocess
+
+cmd, namespace = kcommon.get_command(sys.argv, 'services')
+output = subprocess.check_output(cmd)
+
+lines = output.split('\n')
+
+import kcommon
+kcommon.span(lines, namespace)
+kcommon.format(lines, namespace, "kds")
