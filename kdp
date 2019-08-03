@@ -1,3 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env python
 
-kubectl describe pod "$1"
+import subprocess
+import sys
+
+fields = sys.argv[1].split(' ')
+
+if len(fields) == 2:
+    # pod name + namespace
+    cmd = ["kubectl", "describe", "pod", fields[0], "-n", fields[1]]
+else:
+    cmd = ["kubectl", "describe", "pod", fields[0]]
+
+print subprocess.check_output(cmd)
