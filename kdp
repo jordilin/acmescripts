@@ -3,12 +3,15 @@
 import subprocess
 import sys
 
-fields = sys.argv[1].split(' ')
-
-if len(fields) == 2:
+if len(sys.argv) == 3:
+    # kdp pod namespace
     # pod name + namespace
-    cmd = ["kubectl", "describe", "pod", fields[0], "-n", fields[1]]
+    cmd = ["kubectl", "describe", "pod", sys.argv[1], "-n", sys.argv[2]]
 else:
-    cmd = ["kubectl", "describe", "pod", fields[0]]
+    fields = sys.argv[1].split(' ')
+    if len(fields) == 0:
+        cmd = ["kubectl", "describe", "pod", fields[0]]
+    else:
+        cmd = ["kubectl", "describe", "pod", fields[0], "-n", fields[1]]
 
 print subprocess.check_output(cmd)
