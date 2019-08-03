@@ -1,6 +1,17 @@
 #!/usr/bin/env python
 
 
+def get_command(argvs, unit):
+    cmd = []
+    namespace = ""
+    if len(argvs) == 2:
+        namespace = argvs[1]
+        cmd = ["kubectl", "get", unit, "-n", namespace]
+    else:
+        cmd = ["kubectl", "get", unit]
+    return cmd, namespace
+
+
 def span(lines, namespace):
     # Move headers two spaces to the right to account for quoting
 
