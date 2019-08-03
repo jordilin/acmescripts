@@ -7,10 +7,10 @@ import sys
 
 cmd = []
 
-namespace = None
+namespace = ""
 
-if len(sys.argv) > 2 and sys.argv[1] == "-n":
-    namespace = sys.argv[2]
+if len(sys.argv) == 2:
+    namespace = sys.argv[1]
     cmd = ["kubectl", "get", "pods", "-n", namespace]
 else:
     cmd = ["kubectl", "get", "pods"]
@@ -30,7 +30,7 @@ for h in hf:
     if h == '' and not begin:
         # first space
         begin = True
-        print '  ',
+        print '       ' + len(namespace) * ' ',
     elif begin and h != '':
         print h,
     elif i == 0:
@@ -42,12 +42,12 @@ for l in lines[1:]:
     fields = l.split(' ')
     if len(fields) < 4:
         break
-    if namespace is None:
-        print '"' + fields[0] + '"',
+    if namespace == "":
+        print '"kdp ' + fields[0] + '"',
     else:
         # Add namespace next to it, so we can double click and kdp (describe
         # it) quickly
-        print '"' + fields[0] + ' ' + namespace + '"',
+        print '"kdp ' + fields[0] + ' ' + namespace + '"',
     i = 0
     for f in fields[1:]:
         if f == '' and i == 2:
