@@ -3,9 +3,21 @@
 # Provides kubectl get pods by quoting the pods, so we can quickly select
 # them through acme.
 
+import sys
+
+cmd = []
+
+namespace = None
+
+if len(sys.argv) > 2 and sys.argv[1] == "-n":
+    namespace = sys.argv[2]
+    cmd = ["kubectl", "get", "pods", "-n", namespace]
+else:
+    cmd = ["kubectl", "get", "pods"]
+
 # kubectl get pods
 import subprocess
-output = subprocess.check_output(["kubectl", "get", "pods"])
+output = subprocess.check_output(cmd)
 
 lines = output.split('\n')
 
@@ -30,7 +42,12 @@ for l in lines[1:]:
     fields = l.split(' ')
     if len(fields) < 4:
         break
-    print '"' + fields[0] + '"',
+    if namespace is None:
+        print '"' + fields[0] + '"',
+    else:
+        # Add namespace next to it, so we can double click and kdp (describe
+        # it) quickly
+        print '"' + fields[0] + ' ' + namespace + '"',
     i = 0
     for f in fields[1:]:
         if f == '' and i == 2:
