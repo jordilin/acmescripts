@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Extract text between two parameters
+
+# Select text and middle click
+# |ext param-0 param-1
+
+/bin/sed "s/.*$1\(.*\)$2.*/\1/"
