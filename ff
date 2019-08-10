@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# List of files under current git repository
+
+git ls-files
+# move to the top with title current working directory and add tag :vgr which
+# gives us the option to right click and immediately plumb to the remote
+# repo URL
+.rwind "$PWD/" ":vgr"
