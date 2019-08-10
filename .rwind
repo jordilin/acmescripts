@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# .rwind moves the current window address to the top with a title and optional
+# tag commands. This is not supposed to be used directly but by other tools
+# such as gtrending, git ls-files, etc...
+
+last=$(9p ls acme | sort -g | tail -n 1)
+echo "name $1" | 9p write acme/$last/ctl
+if test "$2"; then
+	echo -n "$2" | 9p write acme/$last/tag
+fi
+echo -n "clean" | 9p write acme/$last/ctl
+echo -n "0,0" | 9p write acme/$last/addr
+echo -n "dot=addr" | 9p write acme/$last/ctl
+echo -n "show" | 9p write acme/$last/ctl
