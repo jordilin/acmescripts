@@ -3,3 +3,4 @@
 # git log up to n commits
 
 git log -n "$1"
+.rwind "$PWD/"
