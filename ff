@@ -4,6 +4,7 @@
 
 git ls-files
 # move to the top with title current working directory and add tag :vgr which
-# gives us the option to right click and immediately plumb to the remote
-# repo URL
-.rwind "$PWD/" ":vgr"
+# gives us the option to right click and immediately plumb to the remote repo
+# URL. git log latest 10 commits, and common edit commands ready to be moved
+# around to window tags
+.rwind "$PWD/" ":vgr (gl 10) (Edit =) |a+ |a- (|fmtc '' '') (def)"
