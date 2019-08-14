@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Trim string from the left
+
+# Select text and middle click
+# |triml 'text to trim'
+
+# Example
+
+# code to remove real code
+# code to remove real code line 2
+
+# When selecting both lines and middle clicking on
+# |triml 'code to remove'
+
+# we end up with
+
+# real code
+# real code line 2
+
+/bin/sed "s/^$1 //g"
