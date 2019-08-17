@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cp "$1" "$1.intermediate"
+rustfmt -q "$1.intermediate" 2>/dev/null
+cat "$1.intermediate"
+rm "$1.intermediate"
