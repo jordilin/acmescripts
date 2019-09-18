@@ -18,4 +18,4 @@
 # code to remove
 # code to remove
 
-/bin/sed "s/ $1$//g"
+/bin/sed "s/$1$//g"
