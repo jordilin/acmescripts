@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# tx create a new file and make it executable
+
+touch "$1"
+chmod +x "$1"
