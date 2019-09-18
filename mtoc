@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+# Generate Markdown table of contents at the top of the file
+# Middle click command in tag to generate toc:
+# mtoc $%
+
+import os
+import re
+import sys
+
+TITLE_START = '- ['
+TITLE_CLOSE = ']'
+REF_START = '(#'
+REF_CLOSE = ')'
+
+winid = os.environ['winid']
+
+cmd = 'echo -n "0,0" | 9p write acme/' + winid + '/addr'
+os.system(cmd)
+
+nonalphanum_pat = re.compile('([^\s\w]|_)+')
+
+with open(sys.argv[1]) as fh:
+    sections = [k.rstrip() for k in fh if k.startswith('#')]
+    for sec in sections:
+        num_pounds = sec.split('#')
+        len_pounds = len(num_pounds)
+        span = ' ' * ((len_pounds - 2) * 2)
+        title = num_pounds[len_pounds - 1].lstrip()
+        # remove non alphanumeric except whitespace
+        titleref = nonalphanum_pat.sub('', title)
+        titleref = re.sub(r' ', '-', titleref)
+        tocline = span + TITLE_START + title + TITLE_CLOSE + REF_START + titleref.lower(
+        ) + REF_CLOSE
+        cmd = 'echo "' + tocline + '" | 9p write acme/' + winid + '/data'
+        os.system(cmd)
