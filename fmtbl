@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# fmtbl (format bulleted paragraph) formats markdown bulleted lists maintaining
+# indent on subsequent lines
+
+# Ex:
+
+# * this is an example
+#   of a bulleted paragraph
+
+# Usage
+# |fmtbl
+
+input=$(sed '')
+text=$(echo "$input" | fmt)
+head=$(echo "$text" | head -n 1)
+numlines=$(expr $(echo "$text" | wc -l) - 1)
+# take all lines except first
+tails=$(echo "$text" | tail -n "$numlines")
+echo "$head"
+echo "$tails" | /bin/sed 's/^/  /g'
