@@ -12,7 +12,7 @@ import (
 
 const BASEURL = "https://github.com/trending/"
 
-var projRE = regexp.MustCompile(`<a href="\/[a-zA-z0-9_-]*\/[a-zA-z0-9_-]*">`)
+var projRE = regexp.MustCompile(`<a href="\/[a-zA-z0-9_-]*\/[a-zA-z0-9_-]*"`)
 
 func main() {
 	flag.Parse()
@@ -24,6 +24,11 @@ func main() {
 		for _, m := range sm {
 			// <a href="/golang/go">
 			proj := strings.Split(string(m), `"`)
+			projPaths := strings.Split(proj[1], `/`)
+			// bypass github.com/features/integrations, /about, /site urls
+			if projPaths[1] == "features" || projPaths[1] == "about" || projPaths[1] == "site" {
+				continue
+			}
 			fmt.Println("https://github.com" + proj[1])
 		}
 	}
