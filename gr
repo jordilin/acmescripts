@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Grep current file adding filename and line number for quick addressing
+# Usage:
+
+# gr <name> $%
+
+filename=$(basename $2)
+grep -n $1 $2 | sed "s/(.*)/$filename:\1/g"
