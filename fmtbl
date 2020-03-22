@@ -18,4 +18,5 @@ numlines=$(expr $(echo "$text" | wc -l) - 1)
 # take all lines except first
 tails=$(echo "$text" | tail -n "$numlines")
 echo "$head"
-echo "$tails" | /bin/sed 's/^/  /g'
+lastlines=$(echo "$tails" | /bin/sed -E 's/^ +//g')
+echo "$lastlines" | /bin/sed 's/^/  /g'
