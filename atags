@@ -12,6 +12,12 @@
 {Edit s/    /\/\/\//g}
 {Edit ,| expand -t 4}
 
+# Clickable Makefile:
+(Edit ,|sed 's/(.*):/(make \1)/g')
+
+# Copy portion of text over to a new file
+>sed ''> newfile.txt
+
 {|json_reformat}
 
 {def keyword}
