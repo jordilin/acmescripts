@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # use ripgrep --vimgrep for addressing
 
