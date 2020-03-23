@@ -1,16 +1,16 @@
-{:0,$} {:;}
-{Edit =}
-{|fmt -w 72}
-{Edit +/keyword/} {Edit -/keyword/}
-{|a+ //} {|a+ '#'}
-{|a- //} {|a- '#'} 
-{Edit ,d}
-{Edit ,s/ $//g} {Edit , |/bin/sed 's/ $//'}
-{Edit .+#0/old/c/new/}
+(:0,$) (:;)
+(Edit =)
+(|fmt -w 72)
+(Edit +/keyword/) (Edit -/keyword/)
+(|a+ //) (|a+ '#')
+(|a- //) (|a- '#')
+(Edit ,d)
+(Edit ,s/ $//g) (Edit , |/bin/sed 's/ $//')
+(Edit .+#0/old/c/new/)
 # comment docs
-{Edit s/\/\/\///g}
-{Edit s/    /\/\/\//g}
-{Edit ,| expand -t 4}
+(Edit s/\/\/\///g)
+(Edit s/    /\/\/\//g)
+(Edit ,| expand -t 4)
 
 # Clickable Makefile:
 (Edit ,|sed 's/(.*):/(make \1)/g')
@@ -18,25 +18,25 @@
 # Copy portion of text over to a new file
 >sed ''> newfile.txt
 
-{|json_reformat}
+(|json_reformat)
 
-{def keyword}
-{s keyword}
-{rustdoc keyword}
-{godoc keyword}
-{pydoc keyword}
-{crate name}
+(def keyword)
+(s keyword)
+(rustdoc keyword)
+(godoc keyword)
+(pydoc keyword)
+(crate name)
 
-{gtrending Rust}
-{gtrending Go}
+(gtrending Rust)
+(gtrending Go)
 
-{Edit ,>python}
-{> python}
-{g '#' $% | awk -F'#' '{print $2}'| sed 's/^ //'}
-{Edit , > wc -l}
+(Edit ,>python)
+(> python)
+(g '#' $% | awk -F'#' '(print $2)'| sed 's/^ //')
+(Edit , > wc -l)
 acmego
-{Watch -x tags cargotest}
-{Watch -x tags gotest}
-{Watch -x tags nosetest}
-{Watch -x tags ctags -R src <other-crate-subfolders>}
-{GOPATH=/your/path Watch go build package_name}
+(Watch -x tags cargotest)
+(Watch -x tags gotest)
+(Watch -x tags nosetest)
+(Watch -x tags ctags -R src <other-crate-subfolders>)
+(GOPATH=/your/path Watch go build package_name)
