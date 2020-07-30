@@ -12,7 +12,8 @@ import (
 
 const BASEURL = "https://github.com/trending/"
 
-var projRE = regexp.MustCompile(`<a href="\/[a-zA-z0-9_-]*\/[a-zA-z0-9_-]*"`)
+//href="/group-name/project-name/stargazers"
+var projRE = regexp.MustCompile(`href="\/[a-zA-z0-9_-]*\/[a-zA-z0-9_-]*\/stargazers"`)
 
 func main() {
 	flag.Parse()
@@ -29,7 +30,7 @@ func main() {
 			if projPaths[1] == "features" || projPaths[1] == "about" || projPaths[1] == "site" {
 				continue
 			}
-			fmt.Println("https://github.com" + proj[1])
+			fmt.Println("https://github.com/" + projPaths[1] + "/" + projPaths[2])
 		}
 	}
 }
